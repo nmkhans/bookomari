@@ -1,0 +1,9 @@
+{% if messages %}
+  <section class="mt-2 me-3">
+    {% for m in messages %}
+      <div class="alert alert-{{m.tags}} w-25 ms-auto" role="alert">
+        {{m}}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
