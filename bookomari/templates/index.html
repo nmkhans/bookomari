@@ -1,7 +1,66 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} Home - Bookomari {% endblock %}
 
 {% block maincontent %}
-  hello world
+<section class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-6">
+      <h1 class="fw-semibold">We are Bookomari.</h1>
+      <h3>The best book listing and selling website out there.</h3>
+      <p>We a authentic and only best selling books on internet. You can find your desired type of books here of different jonras. So browse today and grap one as your liking.</p>
+      <a class="btn btn-info text-white" href="">Browse books</a>
+    </div>
+    <div class="col-6">
+      <img class="img-fluid" src="{% static 'banner.jpg' %}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="row">
+    <div class="col-3">
+      <form class="bg-light p-4 rounded-4 border">
+        {% for category in categories %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="category" id="{{category.id}}">
+            <label class="form-check-label" for="{{category.id}}">
+              <a href="{% url 'filter-by-category' category.slug %}" class="nav-link">{{category.name | upper}}</a>
+            </label>
+          </div>
+        {% endfor %}
+      </form>
+    </div>
+    <div class="col-9">
+      {% if books %}
+      <div class="row">
+        {% for item in books %}
+          <div class="col-4">
+            <div class="card">
+              <img src="{{item.image.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Title: {{item.title}}</h5>
+                <p class="card-text">
+                  Description:
+                  {{item.description | truncatechars:30}}...
+                </p>
+                <p class="card-text">
+                  Category:
+                  {{item.categories.name}}
+                </p>
+                <a href="{% url 'book-detail' item.slug %}" class="btn btn-primary">See detail</a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+      </div>
+      {% else %}
+      <div>
+        <h3 class="text-center">No books available!</h3>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
 {% endblock %}

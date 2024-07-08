@@ -17,7 +17,7 @@ class Borrowing(models.Model):
   status = models.CharField(max_length = 100, choices=BORROWING_STATUS)
 
   class Meta:
-    ordering = ['borrowing_date']
+    ordering = ['-borrowing_date']
 
   def __str__(self):
     return f"Borrowing - {self.id}"
