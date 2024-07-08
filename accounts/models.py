@@ -11,3 +11,6 @@ class UserAccount(models.Model):
   street = models.CharField(max_length = 50)
   postal_code = models.CharField(max_length = 50)
   created_at = models.DateField(auto_now_add = True)
+
+  def __str__(self):
+    return f"user {self.user.username}"
