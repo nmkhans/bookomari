@@ -10,6 +10,7 @@ SECRET_KEY = 'django-insecure-@tp9@n#c)*!!l1o#e&duluj539j52a=)=4+ofy_n=o9om8k#r3
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+LOGIN_URL = '/accounts/login'
 
 
 # Application definition
@@ -25,6 +26,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'accounts',
     'categories',
+    'books',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'

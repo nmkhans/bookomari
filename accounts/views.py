@@ -7,6 +7,8 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from .models import UserAccount
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 class UserRegisterView(FormView):
@@ -30,11 +32,13 @@ class UserLoginView(LoginView):
   def get_success_url(self):
     return reverse_lazy('home')
     
+@login_required
 def user_logout(req):
   logout(req)
   messages.warning(req, 'Logout successfull.')
   return redirect('home')
 
+@method_decorator(login_required, name = 'dispatch')
 class UserProfileView(View):
   template_name = 'accounts/user_profile.html'
 
@@ -57,6 +61,7 @@ class UserProfileView(View):
       'form': form
     })
   
+@method_decorator(login_required, name = 'dispatch')
 class UserPasswordChange(PasswordChangeView):
   template_name = 'accounts/user_password_change.html'
   model = User
@@ -66,6 +71,7 @@ class UserPasswordChange(PasswordChangeView):
     messages.success(self.request, 'Password updated')
     return super().form_valid(form)
   
+@method_decorator(login_required, name = 'dispatch')
 class UserDepositView(FormView):
   template_name = 'accounts/user_deposit.html'
   form_class = UserDeositForm
