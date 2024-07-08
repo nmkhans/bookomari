@@ -17,8 +17,8 @@
             <p class="card-text mb-3">Price: {{book.borrowing_price}}</p>
             <p class="card-text mb-3">Category: {{book.categories.name}}</p>
 
-            {% if True %}
-              <a href="" class="btn btn-primary">Borrow Now</a>
+            {% if user.is_authenticated %}
+              <a href="{% url 'place-borrowing' %}?account_id={{user.account.account_id}}&book_slug={{book.slug}}" class="btn btn-primary">Borrow Now</a>
             {% endif %}
           </div>
         </div>

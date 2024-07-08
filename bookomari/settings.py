@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'accounts',
     'categories',
     'books',
+    'borrowings'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
