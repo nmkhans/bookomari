@@ -13,10 +13,18 @@
         {% if user.is_authenticated %}
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
+              <a class="nav-link active">
+              Hello, {{user.first_name}} {{user.last_name}} - Balance: ({{user.account.balance}})
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Profile</a>
+              <a class="nav-link" href="{% url 'user-profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user-deposit' %}">Deposit</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

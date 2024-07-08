@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserAccount(models.Model):
   user = models.OneToOneField(User, on_delete = models.CASCADE, related_name = 'account')
-  account_id = models.IntegerField()
-  balance = models.DecimalField(default = 0, decimal_places = 2, max_digits = 100000)
+  account_id = models.CharField(max_length=50)
+  balance = models.DecimalField(default = 0, decimal_places = 2, max_digits = 12)
   phone_no = models.CharField(max_length = 11)
   city = models.CharField(max_length = 50)
   street = models.CharField(max_length = 50)
