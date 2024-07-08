@@ -12,6 +12,7 @@ urlpatterns = [
     path('categories/', include('categories.urls')),
     path('books/', include('books.urls')),
     path('borrowings/', include('borrowings.urls')),
+    path('reviews/', include('reviews.urls')),
 ]
 
 if settings.DEBUG:

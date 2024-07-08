@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Book detail - {{car.name}} | Bookomari{% endblock %}
+{% block title %}Book detail - {{book.name}} | Bookomari{% endblock %}
 
 {% block maincontent %}
   <section class="container py-5">
     <div class="row">
       <div class="col-6 border rounded-3">
-        <img class="img-fuid" src="{{book.image.url}}" alt="detail image">
+        <img class="img-fluid" src="{{book.image.url}}" alt="detail image">
       </div>
       <div class="col-6">
         <div class="card">
@@ -26,25 +26,25 @@
     </div>
   </section>
 
-  {% comment %} <section class="container py-5">
+  <section class="container py-5">
     <div class="row mb-3">
       <div class="col-12">
-        <h4>All Comments({{comments | length}})</h4>
+        <h4>All Reviews({{reviews | length}})</h4>
       </div>
     </div>
-    {% if comments %}
+    {% if reviews %}
       <div class="row">
         <div class="col-12">
-          {% for comment in comments %}
+          {% for review in reviews %}
           <div class="card mb-4">
             <div class="card-header">
-              Posted: {{comment.created_at}}
+              Posted: {{review.created_at}}
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>{{comment.content}}</p>
-                <footer class="blockquote-footer">Comment by {{comment.name}}<br />
-                Email: {{comment.email}}
+                <p>{{review.content}}</p>
+                <footer class="blockquote-footer">Reviewed by {{review.name}}<br />
+                Email: {{review.email}}
                 </footer>
               </blockquote>
             </div>
@@ -57,26 +57,32 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            No comments available.
+            No review available.
           </div>
         </div>
       </div>
     </div>
     {% endif %}
-  </section> {% endcomment %}
+  </section> 
 
-  {% comment %} <section class="container py-5">
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <h4 class="my-4">Comment:</h4>
-        <form method="post" class="border rounded-3 p-3">
-          {% csrf_token %}
-          {{comment_form | crispy}}
-          <button class="btn btn-primary w-100">Submit</button>
-        </form>
+  <section class="container py-5">
+    {% if borrowings %}
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <h4 class="my-4">Post review:</h4>
+          <form method="post" class="border rounded-3 p-3">
+            {% csrf_token %}
+            {{review_form | crispy}}
+            <button class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+        <div class="col-1"></div>
       </div>
-      <div class="col-1"></div>
-    </div>
-  </section> {% endcomment %}
+    {% else %}
+      <div class="row">
+        <div class="text-center">Borrow book first to post review.</div>
+      </div>
+    {% endif %}
+  </section>
 {% endblock %}
