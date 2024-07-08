@@ -9,6 +9,7 @@ from .models import UserAccount
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from bookomari.utils import send_email
 
 # Create your views here.
 class UserRegisterView(FormView):
@@ -87,6 +88,13 @@ class UserDepositView(FormView):
     user_account = self.request.user.account
     user_account.balance += deposited_balance
     user_account.save()  
+
+    send_email(
+      "Confirmation of deposit",
+      0,
+      self.request.user,
+      'accounts/deposit_email.html'
+    )
 
     messages.success(self.request, f"Amount {deposited_balance} has been deposited into your balance")  
 

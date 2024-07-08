@@ -3,6 +3,7 @@ from accounts.models import UserAccount
 from books.models import Book
 from .models import Borrowing
 from django.contrib import messages
+from bookomari.utils import send_email
 
 
 # Create your views here.
@@ -27,6 +28,13 @@ def place_borrowing(req):
     )
 
     messages.success(req, "Book borrowed")
+
+    send_email(
+      "Confirmation of borrowing",
+      book.borrowing_price,
+      account.user,
+      'borrowings/borrow_confirm_mail.html'
+    )
 
     return redirect('book-detail', book_slug = book.slug)
   else:
