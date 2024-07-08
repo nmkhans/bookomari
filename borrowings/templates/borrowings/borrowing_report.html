@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} All borrowing list - Bookomari {% endblock %}
+
+{% block maincontent %}
+  <section class="container py-5">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center">All borrowings</h2>
+       {% if borrowing %}
+        <div class="mt-5">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Book</th>
+                <th scope="col">Price</th>
+                <th scope="col">Balance after borrowing</th>
+                <th scope="col">Status</th>
+                <th scope="col">Borrowed at</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in borrowing %}
+                <tr>
+                  <td>{{data.id}}</td>
+                  <td>{{data.book.title}}</td>
+                  <td>{{data.borrowing_price}}</td>
+                  <td>{{data.balance_after_borrowing}}</td>
+                  <td>{{data.status}}</td>
+                  <td>{{data.borrowing_date}}</td>
+                  {% if data.status != 'returned' %}
+                    <td>
+                      <a href="{% url 'return-book' data.id %}" class="btn btn-sm btn-warning text-white">Return</a>
+                    </td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+       {% else %}
+        <h3 class="text-center mt-5">No Borrowing record available.</h3>
+       {% endif %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

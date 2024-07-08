@@ -3,7 +3,8 @@ from django.template.loader import render_to_string
 
 def send_email(subject, amount, user, template):
   message = render_to_string(template, {
-    'user': user
+    'user': user,
+    'amount': amount
   })
 
   send_mail = EmailMultiAlternatives(
