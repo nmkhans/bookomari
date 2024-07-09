@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-@tp9@n#c)*!!l1o#e&duluj539j52a=)=4+ofy_n=o9om8k#r3
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["https://bookomari.onrender.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://bookomari.onrender.com"]
 LOGIN_URL = '/accounts/login'
 
 
