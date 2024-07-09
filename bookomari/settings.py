@@ -1,5 +1,6 @@
 from pathlib import Path
 import environ
+import dj_database_url
 
 env = environ.Env()
 environ.Env.read_env()
@@ -14,7 +15,8 @@ SECRET_KEY = 'django-insecure-@tp9@n#c)*!!l1o#e&duluj539j52a=)=4+ofy_n=o9om8k#r3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ["https://bookomari.onrender.com/"]
 LOGIN_URL = '/accounts/login'
 
 
@@ -81,6 +83,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+""" DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://nmk_mamar_bank_user:Vn3eEaZZ0sRaBArAGCvMMSao6DJVLZgo@dpg-cq4ocvmehbks73bf3360-a.oregon-postgres.render.com/nmk_mamar_bank'
+    )
+} """
 
 
 # Password validation
